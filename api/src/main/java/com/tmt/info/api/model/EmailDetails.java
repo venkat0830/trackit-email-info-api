@@ -16,6 +16,8 @@ public class EmailDetails {
 	private String pendFrequency;
 	private String reconEmailAddress;
 	private String pendEmailAddress;
+	private String primaryEmailAddress;
+	private String uuID;
 	public EmailDetails(String id, String corporateTaxID, String providerTin, Boolean reconAlert, Boolean pendAlert,
 			String reconFrequency, String pendFrequency, String reconEmailAddress, String pendEmailAddress) {
 		super();
@@ -85,6 +87,18 @@ public class EmailDetails {
 	}
 	
 	
+	public String getPrimaryEmailAddress() {
+		return primaryEmailAddress;
+	}
+	public void setPrimaryEmailAddress(String primaryEmailAddress) {
+		this.primaryEmailAddress = primaryEmailAddress;
+	}
+	public String getUuID() {
+		return uuID;
+	}
+	public void setUuID(String uuID) {
+		this.uuID = uuID;
+	}
 	public EmailDetails() {
 		
 	}

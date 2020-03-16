@@ -32,4 +32,11 @@ public class EmailDaoImpl implements EmailDao {
 		return mongoTemplate.find(query, EmailDetails.class);
 	}
 
+	@Override
+	public Integer checkEmailDetails(String providerTin, String uuID) throws Exception {
+		Query query = new Query();
+		query.addCriteria(Criteria.where("uuID").is(uuID));
+		return mongoTemplate.find(query, EmailDetails.class).size();
+	}
+
 }

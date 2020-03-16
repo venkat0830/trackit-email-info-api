@@ -6,8 +6,11 @@ import java.util.regex.Pattern;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 
 import com.tmt.info.api.model.EmailDetails;
+import com.tmt.info.api.model.NewUserResponse;
 import com.tmt.info.api.response.EmailResponse;
 import com.tmt.info.api.response.Error;
 import com.tmt.info.api.response.ErrorResponse;
@@ -106,4 +109,22 @@ public class EmailErrorTranslationUtility {
 	            return false; 
 	        return !pat.matcher(email).matches(); 
 	    } 
+	public NewUserResponse generateErrorResp(String faultCode, String message, String exceptionMessage) {
+		Error error =  new Error();
+		ErrorResponse errorResponse =  new ErrorResponse();
+		MultiValueMap<String, String> headerMap =  new LinkedMultiValueMap<String, String>();
+		NewUserResponse newUserResponse =  new NewUserResponse();
+		if(faultCode.equals("TITASE") ){
+			error.setCode(faultCode);
+			error.setMessage(exceptionMessage);
+			}
+		errorResponse.getErrors().add(error);
+		errorResponse.setMessage("ERROR");
+		errorResponse.setMessage(message);
+		headerMap.add("APPErrorCode", faultCode);
+		newUserResponse.setErrorResponse(errorResponse);
+		newUserResponse.setHeaderMap(headerMap);
+		return newUserResponse;
+		
+	}
 }
