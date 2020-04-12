@@ -37,7 +37,7 @@ public class EmailServiceImpl implements EmailService {
 			ex.printStackTrace();
 			throw ex;
 		}
-		return null;
+		return isExists;
 	}
 
 	@Override
